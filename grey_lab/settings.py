@@ -15,6 +15,7 @@ from pathlib import Path
 import dj_database_url
 import environ
 env = environ.Env()
+
 environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.

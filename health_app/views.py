@@ -16,7 +16,7 @@ from .permissions import IsDoctor
 class DoctorListView(generics.ListCreateAPIView):
     queryset = User.objects.filter(role='doctor')
     serializer_class = UserSerializer
-    # permission_classes = [IsDoctor]
+    permission_classes = [IsDoctor]
 
 class DoctorDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.filter(role='doctor')
@@ -32,12 +32,12 @@ class DoctorDetailView(generics.RetrieveUpdateDestroyAPIView):
 class PatientListView(generics.ListCreateAPIView):
     queryset = User.objects.filter(role='patient')
     serializer_class = UserSerializer
-    # permission_classes = [IsDoctor]
+    permission_classes = [IsDoctor]
 
 class PatientDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.filter(role='patient')
     serializer_class = UserSerializer
-    # permission_classes = [IsAuthenticated, IsOwnerOrDoctor]
+    permission_classes = [IsAuthenticated, IsOwnerOrDoctor]
 
     def get_object(self):
         return self.request.user if self.request.user.role == 'patient' else super().get_object()
